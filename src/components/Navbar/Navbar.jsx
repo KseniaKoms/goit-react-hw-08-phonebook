@@ -2,9 +2,9 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import { NavLink } from 'react-router-dom';
 import { UserMenu } from 'components/UserMenu/UserMenu';
+import { AuthNav } from 'components/AuthNav/AuthNav';
 
 export const Navbar = () => {
   return (
@@ -21,12 +21,7 @@ export const Navbar = () => {
             <NavLink to="contacts"> Contacts</NavLink>
           </Typography>
           <UserMenu />
-          <NavLink to="login">
-            <Button color="inherit">Login</Button>
-          </NavLink>
-          <NavLink to="register">
-            <Button color="inherit">Sign up</Button>
-          </NavLink>
+          <AuthNav />
         </Toolbar>
       </AppBar>
     </Box>
