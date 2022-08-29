@@ -7,4 +7,6 @@ export const store = configureStore({
     user: userReducer,
     [userApi.reducerPath]: userApi.reducer,
   },
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware().concat(userApi.middleware),
 });

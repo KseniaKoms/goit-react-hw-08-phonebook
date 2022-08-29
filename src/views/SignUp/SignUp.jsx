@@ -7,13 +7,38 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useState } from 'react';
+import { useSignUpMutation } from '../../redux/user/userApi';
 
 const theme = createTheme();
 
 export const SignUp = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [signupUser, status] = useSignUpMutation();
+
   const handleSubmit = event => {
     event.preventDefault();
-    // const data = new FormData(event.currentTarget);
+    const credentials = { name, email, password };
+    signupUser(credentials);
+    console.log(status);
+  };
+
+  const handleChange = e => {
+    switch (e.target.name) {
+      case 'name':
+        setName(e.target.value);
+        break;
+      case 'email':
+        setEmail(e.target.value);
+        break;
+      case 'password':
+        setPassword(e.target.value);
+        break;
+      default:
+        return;
+    }
   };
 
   return (
@@ -41,17 +66,19 @@ export const SignUp = () => {
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
+                  onChange={handleChange}
                   autoComplete="given-name"
-                  name="firstName"
+                  name="name"
                   required
                   fullWidth
-                  id="firstName"
+                  id="name"
                   label="Name"
                   autoFocus
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                  onChange={handleChange}
                   required
                   fullWidth
                   id="email"
@@ -62,6 +89,7 @@ export const SignUp = () => {
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                  onChange={handleChange}
                   required
                   fullWidth
                   name="password"
