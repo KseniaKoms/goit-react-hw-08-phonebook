@@ -1,12 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { userApi } from './userApi';
 
-// const initialState = {
-//   user: { name: '', email: '' },
-//   token: '',
-//   isLoggedIn: false,
-// };
-
 export const userSlice = createSlice({
   name: 'user',
   initialState: {
@@ -28,12 +22,21 @@ export const userSlice = createSlice({
   // },
   extraReducers: builder => {
     builder.addMatcher(
+      userApi.endpoints.signUp.matchFulfilled,
+      (state, { payload }) => {
+        state.user.email = payload.user.email;
+        state.user.name = payload.user.name;
+        state.token = payload.token;
+        state.isLoggedIn = true;
+      }
+    );
+    builder.addMatcher(
       userApi.endpoints.login.matchFulfilled,
       (state, { payload }) => {
-        state.email = payload.user.email;
-        state.name = payload.user.name;
-        // state.token = payload.token;
-        // state.isLoggedIn = true;
+        state.user.email = payload.user.email;
+        state.user.name = payload.user.name;
+        state.token = payload.token;
+        state.isLoggedIn = true;
       }
     );
   },

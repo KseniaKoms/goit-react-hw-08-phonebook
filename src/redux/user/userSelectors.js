@@ -1,5 +1,5 @@
 const getIsLoggedIn = state => state.isLoggedIn;
-const getUserName = state => state.name;
+const getUserName = state => state.user.name;
 
 const userSelectors = {
   getIsLoggedIn,
