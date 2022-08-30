@@ -6,13 +6,33 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useState } from 'react';
+import { useLoginMutation } from 'redux/user/userApi';
 
 const theme = createTheme();
 
 export const Login = () => {
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [login] = useLoginMutation();
+
   const handleSubmit = event => {
     event.preventDefault();
-    // const data = new FormData(event.currentTarget);
+    const credentials = { email, password };
+    login(credentials);
+  };
+
+  const handleChange = e => {
+    switch (e.target.name) {
+      case 'email':
+        setEmail(e.target.value);
+        break;
+      case 'password':
+        setPassword(e.target.value);
+        break;
+      default:
+        return;
+    }
   };
 
   return (
@@ -38,6 +58,7 @@ export const Login = () => {
             sx={{ mt: 1 }}
           >
             <TextField
+              onChange={handleChange}
               margin="normal"
               required
               fullWidth
@@ -48,6 +69,7 @@ export const Login = () => {
               autoFocus
             />
             <TextField
+              onChange={handleChange}
               margin="normal"
               required
               fullWidth

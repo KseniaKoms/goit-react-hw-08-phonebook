@@ -9,6 +9,8 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
 import { useSignUpMutation } from '../../redux/user/userApi';
+// import { useDispatch } from 'react-redux';
+// import { loginSuccess } from 'redux/user/userSlice';
 
 const theme = createTheme();
 
@@ -16,13 +18,12 @@ export const SignUp = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [signupUser, status] = useSignUpMutation();
+  const [signupUser] = useSignUpMutation();
 
   const handleSubmit = event => {
     event.preventDefault();
     const credentials = { name, email, password };
     signupUser(credentials);
-    console.log(status);
   };
 
   const handleChange = e => {

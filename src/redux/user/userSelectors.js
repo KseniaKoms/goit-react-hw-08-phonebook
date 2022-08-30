@@ -1,9 +1,9 @@
-const getIsLoggedIn = state => state.user.isLoggedIn;
-const getUserName = state => state.user.user.name;
+const getIsLoggedIn = state => state.isLoggedIn;
+const getUserName = state => state.name;
 
-const useSelectors = {
+const userSelectors = {
   getIsLoggedIn,
   getUserName,
 };
 
-export default useSelectors;
+export default userSelectors;
