@@ -1,7 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { userApi } from './user/userApi';
-// import userReducer from './user/userSlice';
-import user from './user/userSlice';
+import userReducer from './user/userSlice';
 import {
   persistStore,
   persistReducer,
@@ -21,15 +20,16 @@ const userPersistConfig = {
   whitelist: ['token'],
 };
 
-const persistedUserReducer = persistReducer(userPersistConfig, user);
+const persistedUserReducer = persistReducer(userPersistConfig, userReducer);
 
 export const store = configureStore({
   reducer: {
-    user: persistedUserReducer,
     [userApi.reducerPath]: userApi.reducer,
+    user: persistedUserReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
+      thunk: { extraArgument: { userApi } },
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },

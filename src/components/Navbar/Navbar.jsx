@@ -5,8 +5,11 @@ import Typography from '@mui/material/Typography';
 import { NavLink } from 'react-router-dom';
 import { UserMenu } from 'components/UserMenu/UserMenu';
 import { AuthNav } from 'components/AuthNav/AuthNav';
+import userSelectors from 'redux/user/userSelectors';
+import { useSelector } from 'react-redux';
 
 export const Navbar = () => {
+  const isLoggedIn = useSelector(userSelectors.getIsLoggedIn);
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -20,8 +23,7 @@ export const Navbar = () => {
             <NavLink to="/">Home </NavLink>
             <NavLink to="contacts"> Contacts</NavLink>
           </Typography>
-          <UserMenu />
-          <AuthNav />
+          {isLoggedIn ? <UserMenu /> : <AuthNav />}
         </Toolbar>
       </AppBar>
     </Box>

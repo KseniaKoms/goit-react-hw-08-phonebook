@@ -26,9 +26,11 @@ export const userApi = createApi({
         method: 'POST',
         body,
       }),
+      invalidatesTags: ['user'],
     }),
     currentUser: builder.query({
       query: () => '/current',
+      invalidatesTags: ['user'],
     }),
   }),
 });
