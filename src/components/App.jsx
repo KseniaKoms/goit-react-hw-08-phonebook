@@ -5,6 +5,7 @@ import { HomePage } from '../views/HomePage/HomePage';
 import { SignUp } from '../views/SignUp/SignUp';
 import { Login } from '../views/Login/Login';
 import { Suspense } from 'react';
+import { NotFound } from '../views/NotFound/NotFound';
 
 export const App = () => {
   return (
@@ -16,6 +17,7 @@ export const App = () => {
           <Route path="contacts" element={<Contacts />}></Route>
           <Route path="register" element={<SignUp />}></Route>
           <Route path="login" element={<Login />}></Route>
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
     </>

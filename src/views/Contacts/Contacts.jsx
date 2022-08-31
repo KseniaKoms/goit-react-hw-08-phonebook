@@ -1,7 +1,17 @@
+import { ContactForm } from 'components/Contacts/ContactsForm';
+import { Container } from 'components/Contacts/Container';
+import { Title } from 'components/Contacts/Title';
+import { ContactsList } from 'components/Contacts/ContactsList';
+import { Filter } from 'components/Contacts/Filter';
+
 export const Contacts = () => {
   return (
-    <>
-      <h1>contacts</h1>
-    </>
+    <Container>
+      <Title title="Phonebook" />
+      <ContactForm />
+      <Title title="Contacts" />
+      <Filter />
+      <ContactsList />
+    </Container>
   );
 };
