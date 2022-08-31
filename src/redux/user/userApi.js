@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const userApi = createApi({
   reducerPath: 'userApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://connections-api.herokuapp.com/users',
+    baseUrl: 'https://connections-api.herokuapp.com',
     prepareHeaders: (headers, { getState }) => {
       const { token = '' } = getState().user;
       if (token) {
@@ -16,7 +16,7 @@ export const userApi = createApi({
   endpoints: builder => ({
     signUp: builder.mutation({
       query: body => ({
-        url: `/signup`,
+        url: `/users/signup`,
         method: 'POST',
         body,
       }),
@@ -24,7 +24,7 @@ export const userApi = createApi({
     }),
     login: builder.mutation({
       query: body => ({
-        url: '/login',
+        url: '/users/login',
         method: 'POST',
         body,
       }),
@@ -32,13 +32,13 @@ export const userApi = createApi({
     }),
     logout: builder.mutation({
       query: () => ({
-        url: '/logout',
+        url: '/users/logout',
         method: 'POST',
       }),
       invalidatesTags: ['user'],
     }),
     currentUser: builder.query({
-      query: () => '/current',
+      query: () => '/users/current',
       invalidatesTags: ['user'],
     }),
   }),
