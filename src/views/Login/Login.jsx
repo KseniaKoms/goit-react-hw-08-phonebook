@@ -11,7 +11,7 @@ import { useLoginMutation } from 'redux/user/userApi';
 
 const theme = createTheme();
 
-export const Login = () => {
+const Login = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [login] = useLoginMutation();
@@ -93,3 +93,4 @@ export const Login = () => {
     </ThemeProvider>
   );
 };
+export default Login;

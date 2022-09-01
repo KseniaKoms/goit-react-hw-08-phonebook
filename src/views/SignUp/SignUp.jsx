@@ -14,7 +14,7 @@ import { useSignUpMutation } from '../../redux/user/userApi';
 
 const theme = createTheme();
 
-export const SignUp = () => {
+const SignUp = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -115,3 +115,5 @@ export const SignUp = () => {
     </ThemeProvider>
   );
 };
+
+export default SignUp;

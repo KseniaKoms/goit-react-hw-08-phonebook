@@ -15,8 +15,8 @@ export const ContactsList = () => {
           .filter(contact =>
             contact.name.toLowerCase().includes(filter.toLowerCase())
           )
-          .map(({ name, id, phone }) => {
-            return <ContactItem key={id} name={name} number={phone} id={id} />;
+          .map(({ name, id, number }) => {
+            return <ContactItem key={id} name={name} number={number} id={id} />;
           })}
     </ul>
   );

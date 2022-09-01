@@ -21,7 +21,7 @@ export const Navbar = () => {
             sx={{ flexGrow: 1 }}
           >
             <NavLink to="/">Home </NavLink>
-            <NavLink to="contacts" > Contacts</NavLink>
+            {isLoggedIn && <NavLink to="contacts"> Contacts</NavLink>}
           </Typography>
           {isLoggedIn ? <UserMenu /> : <AuthNav />}
         </Toolbar>

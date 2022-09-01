@@ -10,13 +10,13 @@ export const ContactForm = () => {
   const [addContact, { isLoading: adding, isSuccess }] =
     useAddContactMutation();
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
+  const [number, setNumber] = useState('');
 
   useEffect(() => {
     if (isSuccess) {
-      Notify.success('Contact is setting to your phonebook');
+      Notify.success('Contact was added to your phonebook');
       setName('');
-      setPhone('');
+      setNumber('');
     }
   }, [isSuccess]);
 
@@ -28,7 +28,7 @@ export const ContactForm = () => {
       return;
     }
 
-    addContact({ name, phone });
+    addContact({ name, number });
   };
 
   const handleChange = e => {
@@ -37,7 +37,7 @@ export const ContactForm = () => {
         setName(e.target.value);
         break;
       case 'number':
-        setPhone(e.target.value);
+        setNumber(e.target.value);
         break;
       default:
         return;
@@ -61,7 +61,7 @@ export const ContactForm = () => {
       <label htmlFor="number">Tel:</label>
       <input
         onChange={handleChange}
-        value={phone}
+        value={number}
         type="tel"
         name="number"
         autoComplete="off"

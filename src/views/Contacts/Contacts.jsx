@@ -4,7 +4,7 @@ import { Title } from 'components/Contacts/Title';
 import { ContactsList } from 'components/Contacts/ContactsList';
 import { Filter } from 'components/Contacts/Filter';
 
-export const Contacts = () => {
+const Contacts = () => {
   return (
     <Container>
       <Title title="Phonebook" />
@@ -15,3 +15,5 @@ export const Contacts = () => {
     </Container>
   );
 };
+
+export default Contacts;

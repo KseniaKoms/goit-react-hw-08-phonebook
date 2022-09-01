@@ -5,6 +5,7 @@ const initialState = {
   user: { name: '', email: '' },
   token: '',
   isLoggedIn: false,
+  isFetching: false,
 };
 
 export const userSlice = createSlice({
@@ -34,6 +35,18 @@ export const userSlice = createSlice({
       state.user.name = '';
       state.token = '';
       state.isLoggedIn = false;
+    });
+    builder.addMatcher(
+      userApi.endpoints.currentUser.matchFulfilled,
+      (state, { payload }) => {
+        state.user.email = payload.email;
+        state.user.name = payload.name;
+        state.isLoggedIn = true;
+        state.isFetching = false;
+      }
+    );
+    builder.addMatcher(userApi.endpoints.currentUser.matchPending, state => {
+      state.isFetching = true;
     });
   },
 });
