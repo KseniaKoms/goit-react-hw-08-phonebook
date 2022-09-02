@@ -6,7 +6,6 @@ import { Spinner } from 'components/Spinner/Spinner';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Button from '@mui/material/Button';
-import DeleteIcon from '@mui/icons-material/Delete';
 
 export const ContactItem = ({ name, number, id }) => {
   const [removeContact, { isLoading: isRemoving, isSuccess }] =
@@ -25,10 +24,8 @@ export const ContactItem = ({ name, number, id }) => {
         type="button"
         onClick={() => removeContact(id)}
         variant="outlined"
-        startIcon={isRemoving ? <Spinner /> : <DeleteIcon />}
-      >
-        Delete
-      </Button>
+        startIcon={isRemoving ? <Spinner /> : 'Delete'}
+      ></Button>
     </ListItem>
   );
 };
