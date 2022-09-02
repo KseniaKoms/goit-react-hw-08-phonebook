@@ -6,15 +6,22 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useLoginMutation } from 'redux/user/userApi';
+import { Notify } from 'notiflix';
 
 const theme = createTheme();
 
 const Login = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const [login] = useLoginMutation();
+  const [login, { isError }] = useLoginMutation();
+
+  useEffect(() => {
+    if (isError) {
+      Notify.failure('Please, check login or password');
+    }
+  }, [isError]);
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -54,7 +61,7 @@ const Login = () => {
           <Box
             component="form"
             onSubmit={handleSubmit}
-            noValidate
+            // noValidate
             sx={{ mt: 1 }}
           >
             <TextField

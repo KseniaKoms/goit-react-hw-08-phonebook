@@ -4,6 +4,15 @@ import {
   useGetContactsQuery,
 } from '../../redux/contacts/contactsApi';
 import { useState, useEffect } from 'react';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme();
 
 export const ContactForm = () => {
   const { data } = useGetContactsQuery();
@@ -45,34 +54,68 @@ export const ContactForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="name">Name:</label>
-      <input
-        onChange={handleChange}
-        value={name}
-        type="text"
-        name="name"
-        pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-        title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-        required
-        autoComplete="off"
-      />
+    <ThemeProvider theme={theme}>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 7,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Typography component="h1" variant="h5">
+            Phonebook
+          </Typography>
+          <Box
+            component="form"
+            sx={{ mt: 1 }}
+            // noValidate
+            autoComplete="off"
+            onSubmit={handleSubmit}
+          >
+            <TextField
+              onChange={handleChange}
+              id="name"
+              label="Name"
+              margin="normal"
+              value={name}
+              fullWidth
+              required
+              name="name"
+              type="text"
+              inputProps={{
+                inputMode: 'text',
+                pattern:
+                  "^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$",
+              }}
+            />
 
-      <label htmlFor="number">Tel:</label>
-      <input
-        onChange={handleChange}
-        value={number}
-        type="tel"
-        name="number"
-        autoComplete="off"
-        pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-        title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-        required
-      />
+            <TextField
+              id="number"
+              label="Number"
+              inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+              fullWidth
+              variant="outlined"
+              onChange={handleChange}
+              value={number}
+              type="tel"
+              name="number"
+              required
+            />
 
-      <button type="submit">
-        {adding ? <p>adding...</p> : <p>+ add contact</p>}
-      </button>
-    </form>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              {adding ? <p>adding...</p> : <p>+ add contact</p>}
+            </Button>
+          </Box>
+        </Box>
+      </Container>
+    </ThemeProvider>
   );
 };

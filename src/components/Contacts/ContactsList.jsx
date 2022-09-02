@@ -3,12 +3,13 @@ import { ContactItem } from './ContactItem';
 import { useSelector } from 'react-redux';
 import { selectFilter } from 'redux/contacts/filterSlice';
 import { Spinner } from 'components/Spinner/Spinner';
+import List from '@mui/material/List';
 
 export const ContactsList = () => {
   const { data, isLoading } = useGetContactsQuery();
   const filter = useSelector(selectFilter);
   return (
-    <ul>
+    <List>
       {isLoading && <Spinner />}
       {data &&
         data
@@ -18,6 +19,6 @@ export const ContactsList = () => {
           .map(({ name, id, number }) => {
             return <ContactItem key={id} name={name} number={number} id={id} />;
           })}
-    </ul>
+    </List>
   );
 };

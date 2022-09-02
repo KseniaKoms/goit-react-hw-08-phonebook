@@ -9,8 +9,6 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
 import { useSignUpMutation } from '../../redux/user/userApi';
-// import { useDispatch } from 'react-redux';
-// import { loginSuccess } from 'redux/user/userSlice';
 
 const theme = createTheme();
 

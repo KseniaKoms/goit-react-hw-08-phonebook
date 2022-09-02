@@ -3,6 +3,10 @@ import { Notify } from 'notiflix';
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Spinner } from 'components/Spinner/Spinner';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 export const ContactItem = ({ name, number, id }) => {
   const [removeContact, { isLoading: isRemoving, isSuccess }] =
@@ -13,14 +17,19 @@ export const ContactItem = ({ name, number, id }) => {
     }
   }, [removeContact, isSuccess]);
   return (
-    <li key={id}>
-      <p>
+    <ListItem key={id}>
+      <ListItemText>
         {name}: {number}
-      </p>
-      <button type="button" onClick={() => removeContact(id)}>
-        {isRemoving ? <Spinner /> : 'X'}
-      </button>
-    </li>
+      </ListItemText>
+      <Button
+        type="button"
+        onClick={() => removeContact(id)}
+        variant="outlined"
+        startIcon={isRemoving ? <Spinner /> : <DeleteIcon />}
+      >
+        Delete
+      </Button>
+    </ListItem>
   );
 };
 

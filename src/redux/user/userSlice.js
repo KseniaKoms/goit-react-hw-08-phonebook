@@ -48,6 +48,9 @@ export const userSlice = createSlice({
     builder.addMatcher(userApi.endpoints.currentUser.matchPending, state => {
       state.isFetching = true;
     });
+    // builder.addMatcher(userApi.endpoints.login.matchRejected, state => {
+    //   state.isFetching = true;
+    // });
   },
 });
 

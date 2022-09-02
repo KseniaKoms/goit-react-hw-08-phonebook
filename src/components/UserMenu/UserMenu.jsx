@@ -10,7 +10,12 @@ export const UserMenu = () => {
   const [logout] = useLogoutMutation();
   return (
     <>
-      <Typography variant="h6" component="div">{`Hello, ${name}`}</Typography>
+      <Typography
+        variant="subtitle1"
+        component="div"
+        fontSize="18px"
+        fontWeight="500"
+      >{`Hello, ${name}`}</Typography>
       <NavLink to="/">
         <Button color="inherit" onClick={logout}>
           Logout

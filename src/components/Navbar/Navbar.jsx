@@ -8,6 +8,16 @@ import { AuthNav } from 'components/AuthNav/AuthNav';
 import userSelectors from 'redux/user/userSelectors';
 import { useSelector } from 'react-redux';
 
+const styles = {
+  active: {
+    color: 'white',
+  },
+
+  link: {
+    color: '#1935d2',
+  },
+};
+
 export const Navbar = () => {
   const isLoggedIn = useSelector(userSelectors.getIsLoggedIn);
   return (
@@ -20,8 +30,22 @@ export const Navbar = () => {
             children="node"
             sx={{ flexGrow: 1 }}
           >
-            <NavLink to="/">Home </NavLink>
-            {isLoggedIn && <NavLink to="contacts"> Contacts</NavLink>}
+            <NavLink
+              to="/"
+              style={({ isActive }) => (isActive ? styles.active : styles.link)}
+            >
+              Home {''}
+            </NavLink>
+            {isLoggedIn && (
+              <NavLink
+                to="contacts"
+                style={({ isActive }) =>
+                  isActive ? styles.active : styles.link
+                }
+              >
+                {''} Contacts
+              </NavLink>
+            )}
           </Typography>
           {isLoggedIn ? <UserMenu /> : <AuthNav />}
         </Toolbar>
