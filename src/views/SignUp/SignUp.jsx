@@ -21,7 +21,7 @@ const SignUp = () => {
 
   useEffect(() => {
     if (isError) {
-      Notify.failure('Please, check login or password');
+      Notify.failure('Please, add correct name or email');
     }
   }, [isError]);
 
